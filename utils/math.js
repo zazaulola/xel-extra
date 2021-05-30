@@ -5,8 +5,6 @@
 // @license
 //   GNU General Public License v3, Xel Commercial License v1 (check LICENSE.md for details)
 
-let {abs, max, min, round PI} = Math;
-
 // @type (number, number) => number
 //
 // Round given number to the fixed number of decimal places.
