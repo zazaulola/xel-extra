@@ -7,16 +7,16 @@
 // @type (number) => Promise
 //
 // Sleep for given period of time (in miliseconds).
-export let sleep = (time) => {
-  return new Promise( (resolve, reject) => {
-    setTimeout(() => resolve(), time);
+export const sleep = (time, ...args) => {
+  return new Promise( (resolve) => {
+    setTimeout(() => resolve(), time, ...args);
   });
 };
 
 // @type () => number
 //
 // Get timestamp in Unix format, e.g. 1348271383119 [http://en.wikipedia.org/wiki/Unix_time]
-export let getTimeStamp = () => {
+export const getTimeStamp = () => {
   return Date.now();
 };
 
@@ -25,7 +25,7 @@ export let getTimeStamp = () => {
 // @license MIT License [https://github.com/documentcloud/underscore/blob/master/LICENSE]
 //
 // Returns a function, that, when invoked, will only be triggered at most once during a given window of time.
-export let throttle = (func, wait = 500, context) => {
+export const throttle = (func, wait = 500, context) => {
   let args = null;
   let timeout = null;
   let result = null;
@@ -68,7 +68,7 @@ export let throttle = (func, wait = 500, context) => {
 // leading edge, instead of the trailing. Check
 // [http://drupalmotion.com/article/debounce-and-throttle-visual-explanation] for a nice explanation of how this is
 // different from throttle.
-export let debounce = (func, wait, context, immediate = false) => {
+export const debounce = (func, wait, context, immediate = false) => {
   let timeout = null;
   let result = null;
 
