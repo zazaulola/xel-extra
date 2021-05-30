@@ -4,11 +4,13 @@
 // @license
 //   GNU General Public License v3, Xel Commercial License v1 (check LICENSE.md for details)
 
+// @todo remove this shit (DOMParser)
 let templateElement = document.createElement("template");
 
 // @type () => HTMLElement || DocumentFragment
 //
 // Template string tag used to parse HTML strings.
+// @todo remove this shit (DOMParser)
 export let html = (strings, ...expressions) => {
   let parts = [];
 
@@ -32,6 +34,7 @@ export let html = (strings, ...expressions) => {
 // @type () => CSSStyleSheet
 //
 // Template string tag used to parse CSS strings.
+// @todo remove this shit (DOMParser)
 export let css = (strings, ...expressions) => {
   let parts = [];
 
@@ -49,6 +52,7 @@ export let css = (strings, ...expressions) => {
 // @type () => SVGElement || DocumentFragment
 //
 // Template string tag used to parse SVG strings.
+// @todo remove this shit (DOMParser)
 export let svg = (strings, ...expressions) => {
   let parts = [];
 
