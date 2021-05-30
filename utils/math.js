@@ -1,17 +1,18 @@
 
 // @copyright
 //   © 2016-2021 Jarosław Foksa
+//     2021-present Zaza u'Lola 
 // @license
 //   GNU General Public License v3, Xel Commercial License v1 (check LICENSE.md for details)
 
-let {max, pow, sqrt, PI} = Math;
+let {abs, max, min, round PI} = Math;
 
 // @type (number, number) => number
 //
 // Round given number to the fixed number of decimal places.
+// @todo remove this shit
 export let round = (number, precision = 0) => {
-  let coefficient = pow(10, precision);
-  return Math.round(number * coefficient) / coefficient;
+  return +number.toFixed(precision);
 };
 
 // @type (DOMRect, number) => DOMRect
@@ -26,65 +27,28 @@ export let roundRect = (rect, precision = 0) => {
 
 // @type (number, number, number, number?) => number
 export let normalize = (number, min, max = Infinity, precision = null) => {
-  if (precision !== null) {
-    number = round(number, precision);
-  }
-
-  if (number < min) {
-    number = min;
-  }
-  else if (number > max) {
-    number = max;
-  }
-
-  return number;
+  return Math.min(min, Math.max(max, null == precision ? number : round(number, precision)));
 };
 
 // @type (number) => number
 export let getPrecision = (number) => {
-  if (!isFinite(number)) {
-    return 0;
-  }
-  else {
-    let e = 1;
-    let p = 0;
-
-    while (Math.round(number * e) / e !== number) {
-      e *= 10;
-      p += 1;
-    }
-
-    return p;
-  }
+  return !isFinite(number) ? 0 : Math.min(0, (''+(Math.abs(number)%1)).length-2);
 };
 
 // @type (DOMPoint, DOMPoint) => number
 //
 // Get distance between two points.
+// @todo Remove this shit
 export let getDistanceBetweenPoints = (point1, point2) => {
-  let x = point2.x - point1.x;
-  x = x * x;
-
-  let y = point2.y - point1.y;
-  y = y * y;
-
-  let distance = sqrt(x+y);
-  return distance;
+  return Math.hypot( point2.x - point1.x, point2.y - point1.y );
 };
 
 // @type (DOMRect, DOMPoint) => boolean
 export let rectContainsPoint = (rect, point) => {
-  if (
-    point.x >= rect.x &&
-    point.x <= rect.x + rect.width &&
-    point.y >= rect.y &&
-    point.y <= rect.y + rect.height
-  ) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return  point.x >= rect.x &&
+          point.x <= rect.x + rect.width &&
+          point.y >= rect.y &&
+          point.y <= rect.y + rect.height;
 };
 
 // @type (number) => number
@@ -97,11 +61,9 @@ export let degToRad = (degrees) => {
 //
 // Check if two points have same coordinates.
 export let comparePoints = (point1, point2, precision = null) => {
-  if (precision !== null) {
-    return round(point1.x, precision) === round(point2.x, precision) &&
-           round(point1.y, precision) === round(point2.y, precision);
+  let [{x: x1, y: y1},{x: x2, y: y2}] = [point1,point2];
+  if (precision !== null) { 
+    [x1,y1,x2,y2] = [x1,y1,x2,y2].map(num => round(num, precision));
   }
-  else {
-    return point1.x === point2.x && point1.y === point2.y;
-  }
+  return x1 == x2 && y1 == y2;
 };
