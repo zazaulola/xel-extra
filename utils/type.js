@@ -7,6 +7,7 @@
 // @type (any) => boolean
 //
 // Returns true if the passed argument is either a number or a string that represents a number.
+// @todo Remove this shit!
 export let isNumeric = (arg) => {
-  return !Array.isArray(arg) && (arg - parseFloat(arg) + 1) >= 0;
+  return !isNaN(arg);
 };
