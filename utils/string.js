@@ -1,6 +1,7 @@
 
 // @copyright
 //   © 2016-2021 Jarosław Foksa
+//     2021-present Zaza u`Lola
 // @license
 //   GNU General Public License v3, Xel Commercial License v1 (check LICENSE.md for details)
 
@@ -10,7 +11,7 @@ let {isFinite, isNaN, parseFloat} = Number;
 //
 // Check whether given argument is a string
 export let isString = (arg) => {
-  return typeof arg === "string";
+  return "string" == typeof arg;
 };
 
 // @type (string) => void
@@ -40,5 +41,5 @@ export let isDOMWhitespace = (string) => {
 // Returns true if the passed argument is either a number or a string that represents a number.
 export let isNumeric = (value) => {
   let number = parseFloat(value);
-  return isNaN(number) === false && isFinite(number);
+  return !isNaN(number) && isFinite(number);
 };
